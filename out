@@ -1,0 +1,876 @@
+fatal error: concurrent map read and map write
+
+goroutine 117 [running]:
+runtime.throw(0x4d345a, 0x21)
+	/home/zhuffles/go/src/runtime/panic.go:1116 +0x72 fp=0xc000285ee8 sp=0xc000285eb8 pc=0x42f4c2
+runtime.mapaccess1_fast32(0x4b3aa0, 0xc000118000, 0x38fe17cf, 0xc000380050)
+	/home/zhuffles/go/src/runtime/map_fast32.go:21 +0x194 fp=0xc000285f10 sp=0xc000285ee8 pc=0x40eb94
+main.(*Edge).Add(0xc00011a000, 0x38fe17cf, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:55 +0x24c fp=0xc000285f68 sp=0xc000285f10 pc=0x49d24c
+main.Insert(0xc0000fe370, 0x5, 0x5, 0x4ac660, 0xc000010900)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3 fp=0xc000285fb8 sp=0xc000285f68 pc=0x49cfe3
+runtime.goexit()
+	/home/zhuffles/go/src/runtime/asm_amd64.s:1373 +0x1 fp=0xc000285fc0 sp=0xc000285fb8 pc=0x45c341
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 1 [runnable]:
+math/rand.(*Rand).Intn(0xc0000a4150, 0x3e, 0xa)
+	/home/zhuffles/go/src/math/rand/rand.go:167 +0xa2
+math/rand.Intn(...)
+	/home/zhuffles/go/src/math/rand/rand.go:337
+main.RandStringRunes(0xa, 0xc000294950, 0xa)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:105 +0x8d
+main.main()
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0x13b
+
+goroutine 45 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc03e2f3f00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x3e2f3fa7, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a0cd0, 0x5, 0x5, 0x4ac660, 0xc000010480)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 51 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc01d868300, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x1d8683e3, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a0eb0, 0x5, 0x5, 0x4ac660, 0xc0000104e0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 52 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc050375800, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x503758c8, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a0f00, 0x5, 0x5, 0x4ac660, 0xc0000104f0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 53 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0994e4200, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x994e425d, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a0f50, 0x5, 0x5, 0x4ac660, 0xc000010500)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 54 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0520b0000, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x520b0077, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a0fa0, 0x5, 0x5, 0x4ac660, 0xc000010510)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 165 [runnable]:
+main.Insert(0xc0000ff270, 0x5, 0x5, 0x4ac660, 0xc000010c00)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:34
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 68 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc08c41e300, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x8c41e34b, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1400, 0x5, 0x5, 0x4ac660, 0xc0000105f0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 69 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc077ae5d00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x77ae5d85, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1450, 0x5, 0x5, 0x4ac660, 0xc000010600)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 70 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0fd377f00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0xfd377fe4, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a14a0, 0x5, 0x5, 0x4ac660, 0xc000010610)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 71 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0daa9c400, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0xdaa9c494, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a14f0, 0x5, 0x5, 0x4ac660, 0xc000010620)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 72 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0ebd09b00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0xebd09b0d, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1540, 0x5, 0x5, 0x4ac660, 0xc000010630)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 74 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc095928f00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x95928f7a, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a15e0, 0x5, 0x5, 0x4ac660, 0xc000010650)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 157 [runnable]:
+main.Insert(0xc0000feff0, 0x5, 0x5, 0x4ac660, 0xc000010b80)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:34
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 76 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc07c226600, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x7c22663a, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1680, 0x5, 0x5, 0x4ac660, 0xc000010670)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 80 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0a849c400, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0xa849c4f7, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a17c0, 0x5, 0x5, 0x4ac660, 0xc0000106b0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 81 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc06d19e800, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x6d19e834, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1810, 0x5, 0x5, 0x4ac660, 0xc0000106c0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 82 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0295a3200, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x295a3201, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1860, 0x5, 0x5, 0x4ac660, 0xc0000106d0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 158 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0359e2300, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x359e23f6, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000ff040, 0x5, 0x5, 0x4ac660, 0xc000010b90)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 90 [runnable]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc08354f600, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x8354f668, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1ae0, 0x5, 0x5, 0x4ac660, 0xc000010750)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 91 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0289a5600, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x289a560b, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1b30, 0x5, 0x5, 0x4ac660, 0xc000010760)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 92 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0a7689500, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0xa76895d8, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1b80, 0x5, 0x5, 0x4ac660, 0xc000010770)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 94 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0869bbd00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x869bbdb3, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1c20, 0x5, 0x5, 0x4ac660, 0xc000010790)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 95 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc087a8de00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x87a8de7e, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1c70, 0x5, 0x5, 0x4ac660, 0xc0000107a0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 96 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0fd4bb200, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0xfd4bb23d, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1cc0, 0x5, 0x5, 0x4ac660, 0xc0000107b0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 97 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc00807ae00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x807ae2e, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1d10, 0x5, 0x5, 0x4ac660, 0xc0000107c0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 98 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc00a8b7400, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0xa8b7474, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1d60, 0x5, 0x5, 0x4ac660, 0xc0000107d0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 99 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0e0134900, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0xe0134983, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1db0, 0x5, 0x5, 0x4ac660, 0xc0000107e0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 100 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0029fb100, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x29fb1ad, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1e00, 0x5, 0x5, 0x4ac660, 0xc0000107f0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 101 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc02f05ab00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x2f05ab7a, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1e50, 0x5, 0x5, 0x4ac660, 0xc000010800)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 102 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0219e9200, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x219e92fa, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1ea0, 0x5, 0x5, 0x4ac660, 0xc000010810)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 103 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc00a59e800, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0xa59e893, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1ef0, 0x5, 0x5, 0x4ac660, 0xc000010820)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 104 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc04ed54500, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x4ed545eb, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1f40, 0x5, 0x5, 0x4ac660, 0xc000010830)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 105 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0bb856000, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0xbb856043, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000a1f90, 0x5, 0x5, 0x4ac660, 0xc000010840)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 106 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc095945200, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x9594525d, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fe000, 0x5, 0x5, 0x4ac660, 0xc000010850)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 107 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc03cf51b00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x3cf51b12, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fe050, 0x5, 0x5, 0x4ac660, 0xc000010860)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 108 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0108fd900, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x108fd9e6, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fe0a0, 0x5, 0x5, 0x4ac660, 0xc000010870)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 109 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc010c0dc00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x10c0dca4, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fe0f0, 0x5, 0x5, 0x4ac660, 0xc000010880)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 110 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc083ae7c00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x83ae7c46, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fe140, 0x5, 0x5, 0x4ac660, 0xc000010890)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 111 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0095fee00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x95fee9c, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fe190, 0x5, 0x5, 0x4ac660, 0xc0000108a0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 112 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc069de6800, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x69de6871, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fe1e0, 0x5, 0x5, 0x4ac660, 0xc0000108b0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 164 [runnable]:
+main.Insert(0xc0000ff220, 0x5, 0x5, 0x4ac660, 0xc000010bf0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:34
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 163 [runnable]:
+main.Insert(0xc0000ff1d0, 0x5, 0x5, 0x4ac660, 0xc000010be0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:34
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 162 [runnable]:
+main.Insert(0xc0000ff180, 0x5, 0x5, 0x4ac660, 0xc000010bd0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:34
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 116 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0c3e89900, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0xc3e8991f, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fe320, 0x5, 0x5, 0x4ac660, 0xc0000108f0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 154 [runnable]:
+main.Insert(0xc0000fef00, 0x5, 0x5, 0x4ac660, 0xc000010b50)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:34
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 153 [runnable]:
+main.(*Edge).Add(0xc00011a000, 0x6c322f9f, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:61 +0x3e5
+main.Insert(0xc0000feeb0, 0x5, 0x5, 0x4ac660, 0xc000010b40)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 121 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0e4f76c00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0xe4f76c9f, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fe4b0, 0x5, 0x5, 0x4ac660, 0xc000010940)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 122 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc080335b00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x80335b26, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fe500, 0x5, 0x5, 0x4ac660, 0xc000010950)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 124 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0c06afb00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0xc06afb79, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fe5a0, 0x5, 0x5, 0x4ac660, 0xc000010970)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 160 [runnable]:
+main.Insert(0xc0000ff0e0, 0x5, 0x5, 0x4ac660, 0xc000010bb0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:34
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 159 [runnable]:
+main.Insert(0xc0000ff090, 0x5, 0x5, 0x4ac660, 0xc000010ba0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:34
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 156 [runnable]:
+main.Insert(0xc0000fefa0, 0x5, 0x5, 0x4ac660, 0xc000010b70)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:34
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 155 [runnable]:
+main.Insert(0xc0000fef50, 0x5, 0x5, 0x4ac660, 0xc000010b60)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:34
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 161 [runnable]:
+main.Insert(0xc0000ff130, 0x5, 0x5, 0x4ac660, 0xc000010bc0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:34
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 151 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0be0c9900, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0xbe0c9938, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fee10, 0x5, 0x5, 0x4ac660, 0xc000010b20)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 150 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc091b00e00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x91b00e65, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fedc0, 0x5, 0x5, 0x4ac660, 0xc000010b10)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 149 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0f4c9ee00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0xf4c9ee32, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fed70, 0x5, 0x5, 0x4ac660, 0xc000010b00)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 152 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc08a76d800, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x8a76d8fc, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fee60, 0x5, 0x5, 0x4ac660, 0xc000010b30)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 139 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc04042dc00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x4042dc80, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fea50, 0x5, 0x5, 0x4ac660, 0xc000010a60)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 140 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0003e6100, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x3e619c, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000feaa0, 0x5, 0x5, 0x4ac660, 0xc000010a70)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 141 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0b0d33f00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0xb0d33f37, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000feaf0, 0x5, 0x5, 0x4ac660, 0xc000010a80)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 142 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0d46a4d00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0xd46a4dc8, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000feb40, 0x5, 0x5, 0x4ac660, 0xc000010a90)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 143 [runnable]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc00d4b3a01, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0xd4b3aa3, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000feb90, 0x5, 0x5, 0x4ac660, 0xc000010aa0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 144 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc039f25100, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x39f25162, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000febe0, 0x5, 0x5, 0x4ac660, 0xc000010ab0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 145 [runnable]:
+main.Insert(0xc0000fec30, 0x5, 0x5, 0x4ac660, 0xc000010ac0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:34
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 146 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc0069acd01, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x69acde0, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fec80, 0x5, 0x5, 0x4ac660, 0xc000010ad0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 147 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc08a7c2f00, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x8a7c2fe4, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fecd0, 0x5, 0x5, 0x4ac660, 0xc000010ae0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+
+goroutine 148 [semacquire]:
+sync.runtime_SemacquireMutex(0xc00011a01c, 0xc002c75900, 0x1)
+	/home/zhuffles/go/src/runtime/sema.go:71 +0x47
+sync.(*Mutex).lockSlow(0xc00011a018)
+	/home/zhuffles/go/src/sync/mutex.go:138 +0xfc
+sync.(*Mutex).Lock(...)
+	/home/zhuffles/go/src/sync/mutex.go:81
+main.(*Edge).Add(0xc00011a000, 0x2c75913, 0x0, 0x0, 0xc00011a000)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:56 +0x426
+main.Insert(0xc0000fed20, 0x5, 0x5, 0x4ac660, 0xc000010af0)
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:40 +0xf3
+created by main.main
+	/mnt/c/Users/Notandi/go/src/github.com/zveinn/hash/main.go:116 +0xaf
+exit status 2

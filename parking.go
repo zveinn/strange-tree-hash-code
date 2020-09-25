@@ -5,6 +5,13 @@ import (
 	"strconv"
 )
 
+func GetKey(s string) (key int16) {
+	for i, v := range []byte(s) {
+		key += int16(int(v) * i)
+	}
+	return
+}
+
 func strToBinary(s string, base int) []byte {
 
 	var b []byte
@@ -15,8 +22,8 @@ func strToBinary(s string, base int) []byte {
 
 	return b
 }
-func Hash(s string) int {
-	v := int(crc32.ChecksumIEEE([]byte(s)))
+func Hash(s string) uint32 {
+	v := crc32.ChecksumIEEE([]byte(s))
 	if v >= 0 {
 		return v
 	}
