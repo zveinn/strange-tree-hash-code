@@ -1,8 +1,10 @@
 package main
 
 import (
+	"io/ioutil"
 	"log"
 	"math/rand"
+	"os"
 	"sync"
 	"time"
 )
@@ -51,15 +53,16 @@ func (e *Edge) Add(key int16, data interface{}) *Edge {
 	}
 	return e.NK[key]
 }
+
 func (e *Edge) Get(key int16) *Edge {
 	e.Sync.RLock()
 	defer e.Sync.RUnlock()
 	if e.NK[key] != nil {
-
 		return e.NK[key]
 	}
 	return nil
 }
+
 func Find(tag string) (*Edge, bool) {
 	currentEdge := ROOT
 	totalMatches := len(tag)
@@ -97,6 +100,17 @@ func RandStringRunes(n int) string {
 }
 func main() {
 
+	dat, err := ioutil.ReadFile("gg/gg/gg/xx/final")
+	if err != nil {
+		log.Println(err)
+	}
+	log.Println(dat)
+	dat, err = ioutil.ReadFile("gg/gg/gg/xx/final")
+	if err != nil {
+		log.Println(err)
+	}
+	log.Println(dat)
+	os.Exit(1)
 	// k1 := GetKey("Sveinn")
 	// k2 := GetKey("sveinn")
 	// k3 := GetKey("svenin")
